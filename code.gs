@@ -3,7 +3,7 @@ function enviarCorreos() {
   var sheet = SpreadsheetApp.openById(spreadsheetId).getActiveSheet();
   var data = sheet.getDataRange().getValues();
   
-  // Asume que la primera fila contiene los encabezados
+
   var headers = data[0];
   var PARA_INDEX = headers.indexOf("PARA");
   var CC_INDEX = headers.indexOf("CC");
@@ -21,11 +21,9 @@ function enviarCorreos() {
     var templateId = data[i][TEMPLATE_ID_INDEX];
     
     if (para && templateId) {
-      // Obtener el contenido del archivo HTML de la plantilla
       var templateFile = DriveApp.getFileById(templateId);
       var template = templateFile.getAs('text/html').getDataAsString();
 
-      // Reemplazar el marcador {{NOMBRE}} en el TEMPLATE con el nombre real
       var htmlBody = template.replace("{{NOMBRE}}", nombre);
       
       MailApp.sendEmail({
