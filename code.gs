@@ -1,39 +1,62 @@
 function enviarCorreos() {
-  // var spreadsheetId =  
-  var sheet = SpreadsheetApp.openById(spreadsheetId).getActiveSheet();
-  var data = sheet.getDataRange().getValues();
+  const env = env_();
+  const datosSheet = SpreadsheetApp.openById(env.ID_DATABASE).getSheetByName(env.SHEET_NAME);
+  const datosRange = datosSheet.getDataRange();
+  const datosValues = datosRange.getValues();
   
+  // Asume que la primera fila contiene los encabezados
+  const headers = datosValues[0];
+  const PARA_INDEX = headers.indexOf("PARA");
+  const CC_INDEX = headers.indexOf("CC");
+  const CCO_INDEX = headers.indexOf("CCO");
+  const ASUNTO_INDEX = headers.indexOf("ASUNTO");
+  const NOMBRE_INDEX = headers.indexOf("NOMBRE");
+  const TEMPLATE_ID_INDEX = headers.indexOf("TEMPLATE_ID");
 
-  var headers = data[0];
-  var PARA_INDEX = headers.indexOf("PARA");
-  var CC_INDEX = headers.indexOf("CC");
-  var CCO_INDEX = headers.indexOf("CCO");
-  var ASUNTO_INDEX = headers.indexOf("ASUNTO");
-  var NOMBRE_INDEX = headers.indexOf("NOMBRE");
-  var TEMPLATE_ID_INDEX = headers.indexOf("TEMPLATE_ID");
-
-  for (var i = 1; i < data.length; i++) {
-    var para = data[i][PARA_INDEX];
-    var cc = data[i][CC_INDEX];
-    var cco = data[i][CCO_INDEX];
-    var asunto = data[i][ASUNTO_INDEX];
-    var nombre = data[i][NOMBRE_INDEX];
-    var templateId = data[i][TEMPLATE_ID_INDEX];
+  for (let i = 1; i < datosValues.length; i++) {
+    const para = datosValues[i][PARA_INDEX];
+    const cc = datosValues[i][CC_INDEX];
+    const cco = datosValues[i][CCO_INDEX];
+    const asunto = datosValues[i][ASUNTO_INDEX];
+    const nombre = datosValues[i][NOMBRE_INDEX];
+    const templateId = datosValues[i][TEMPLATE_ID_INDEX];
     
-    if (para && templateId) {
-      var templateFile = DriveApp.getFileById(templateId);
-      var template = templateFile.getAs('text/html').getDataAsString();
+    console.log("Para:", para);
+    console.log("CC:", cc);
+    console.log("CCO:", cco);
+    console.log("Asunto:", asunto);
+    console.log("Nombre:", nombre);
+    console.log("Template ID:", templateId);
 
-      var htmlBody = template.replace("{{NOMBRE}}", nombre);
+    if (para && templateId) {
+      // Seleccionar la plantilla basada en TEMPLATE_ID
+      let templateFile;
+      if (templateId === 'TEMPLATE_HTML_ID_1') {
+        templateFile = 'mailTemplateOne';
+      } else if (templateId === 'TEMPLATE_HTML_ID_2') {
+        templateFile = 'mailTemplateTwo';
+      } else {
+        continue; // Si el TEMPLATE_ID no coincide con ninguna plantilla, salta esta fila
+      }
       
-      MailApp.sendEmail({
-        to: para,
+      const template = HtmlService.createTemplateFromFile(templateFile);
+      const emailData = {
+        nombreCompleto: capitalize(nombre)
+      };
+      template.data = emailData;
+      const htmlBody = template.evaluate().getContent();
+      console.log("HTML Body:", htmlBody);
+      GmailApp.sendEmail(para, asunto, '', {
         cc: cc,
         bcc: cco,
-        subject: asunto,
         htmlBody: htmlBody
       });
-      Logger.log("Correo enviado a: " + para);
+      
+      console.log("Correo enviado a: " + para);
     }
   }
+}
+
+function capitalize(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 }
