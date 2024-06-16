@@ -45,7 +45,11 @@ function enviarCorreos() {
       };
       template.data = emailData;
       const htmlBody = template.evaluate().getContent();
-      console.log("HTML Body:", htmlBody);
+
+console.log("Template:", templateFile);
+console.log("Email Data:", emailData);
+console.log("HTML Body:", htmlBody); 
+       
       GmailApp.sendEmail(para, asunto, '', {
         cc: cc,
         bcc: cco,
