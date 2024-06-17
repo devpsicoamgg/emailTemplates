@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Postulación Espontánea - Psicólogo y Desarrollador Web</title>
+    <title>DevPsicoAmgg</title>
     <style>
         @keyframes slideIn {
             from {
@@ -15,6 +15,7 @@
                 transform: translateY(0);
             }
         }
+
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -23,55 +24,106 @@
                 opacity: 1;
             }
         }
-    
+
         body {
-            font-family: 'Comic Sans MS', sans-serif;
+            font-family: 'Comic Sans MS', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji', sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f0f0f0;
+            background-image: url('https://res.cloudinary.com/dt1aacjqj/image/upload/v1716767758/wallpaper-962590_1280_wkby9v.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
         }
+
         .container {
             max-width: 700px;
             margin: 0 auto;
-            background-color: #fff;
+            background-color: rgba(255, 255, 255, 0.9);
             border: 10px solid #000;
             border-radius: 10px;
             padding: 20px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             animation: slideIn 1s ease-out;
         }
-        .header {
-            background-color: #ffeb3b;
-            padding: 20px;
-            text-align: center;
-            border-bottom: 10px solid #000;
-            animation: bounce 2s infinite;
-        }
-        .header h1 {
-            margin: 0;
-            font-size: 32px;
-            color: #000;
-            text-shadow: 2px 2px #ff9800;
-        }
+
+.header {
+  background-color: #f0f0f0;
+    background-image: url('https://res.cloudinary.com/dt1aacjqj/image/upload/v1718511202/superficie-metal-rayado-estilo-grunge-oscuro_wqouak.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 10px solid #000;
+    animation: bounce 2s infinite;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 32px;
+    color: #fff;
+    text-shadow: 2px 2px 0 #666, 
+                 4px 4px 0 #555, 
+                 6px 6px 0 #444, 
+                 8px 8px 0 #333;
+    text-align: right;
+}
+
+.logo-container {
+    flex: 0 0 25%; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #fff; 
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); 
+    padding: 10px; 
+    border-radius: 10px; 
+}
+
+.logo {
+        width: 90%; 
+        height: 90%; 
+        filter: drop-shadow(22px 22px 22px rgba(255, 255, 255, 0.8)); 
+}
+
+.h1-container {
+    flex: 0 0 75%; 
+    text-align: right;
+}
+
+
+
         .content {
             padding: 20px;
+            color: #333;
         }
+
         .content h2 {
             color: #000;
             font-size: 24px;
             animation: fadeIn 1.5s ease-out;
         }
+
         .content p {
             color: #333;
             line-height: 1.6;
             font-size: 18px;
             animation: fadeIn 1.5s ease-out;
         }
+
+        .cta-buttons {
+            text-align: center;
+            margin-top: 20px;
+        }
+
         .cta-button {
             display: inline-block;
             padding: 15px 25px;
-            margin: 20px 0;
-            background-color: #ff9800;
+            margin: 10px;
+            background-color: #666;
             color: #fff;
             text-align: center;
             text-decoration: none;
@@ -82,9 +134,11 @@
             box-shadow: 3px 3px #000;
             animation: bounce 2s infinite;
         }
+
         .cta-button:hover {
-            background-color: #f57c00;
+            background-color: #555;
         }
+
         .footer {
             background-color: #f1f1f1;
             padding: 10px;
@@ -94,6 +148,7 @@
             border-top: 10px solid #000;
             animation: fadeIn 2s ease-out;
         }
+
         .comic-box {
             border: 3px solid #000;
             padding: 10px;
@@ -101,49 +156,55 @@
             background-color: #fffde7;
             animation: slideIn 1.2s ease-out;
         }
+
         .comic-box p {
             margin: 0;
         }
-        .image-container {
-            text-align: center;
-            margin: 20px 0;
-            animation: fadeIn 1.8s ease-out;
-        }
-        .image-container img {
-            max-width: 100%;
-            height: auto;
-            border: 5px solid #000;
-            box-shadow: 3px 3px #000;
-        }
+
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>¡Hola! Soy [Tu Nombre]</h1>
+            <div class="logo-container">
+                <img src="https://github.com/devpsicoamgg/elementsdevamgg-/blob/main/images/logo2.png?raw=true" alt="Logo" class="logo">
+            </div>
+            <div class="h1-container">  
+                <h1>¡Hola! <?= data.nombreCompleto ?></h1> 
+            </div>
         </div>
         <div class="content">
             <div class="comic-box">
-                <p><strong>¿Quién soy?</strong></p>
-                <p>Psicólogo y Desarrollador Web, combinando habilidades para crear experiencias únicas.</p>
+                <p><strong><?= data.tituloCaja1 ?></strong></p>
+                <p><?= data.mensajeCaja1 ?></p>
             </div>
             <div class="comic-box">
-                <p><strong>¿Qué ofrezco?</strong></p>
-                <p>Servicios de terapia y desarrollo web para mejorar el bienestar y la presencia online de tus clientes.</p>
+                <p><strong><?= data.tituloCaja2 ?></strong></p>
+                <p><?= data.mensajeCaja2 ?></p>
             </div>
             <div class="comic-box">
-                <p><strong>¿Por qué yo?</strong></p>
-                <p>Porque integro conocimientos de psicología para diseñar interfaces web intuitivas y centradas en el usuario.</p>
+                <p><strong><?= data.tituloCaja3 ?></strong></p>
+                <p><?= data.mensajeCaja3 ?></p>
             </div>
-            <div class="image-container">
-                <img src="[URL de tu imagen o avatar]" alt="Imagen o Avatar">
-            </div>
+
+
+
             <p>Estoy muy interesado en colaborar con ustedes y aportar mis conocimientos y habilidades en futuros proyectos. Adjunto mi currículum para su consideración.</p>
-            <a href="[URL de tu portfolio o LinkedIn]" class="cta-button">Visita Mi Portfolio</a>
+            <div class="cta-buttons">
+                <a href="https://github.com/devpsicoamgg" class="cta-button">
+                    <img src="https://img.icons8.com/ios-filled/50/000000/github.png" alt="GitHub Logo" style="vertical-align: middle;">
+                    &nbsp;Visita Mi GitHub
+                </a>
+                <a href="https://www.linkedin.com/in/psico-dev-amgg/" class="cta-button">
+                    <img src="https://img.icons8.com/ios-filled/50/000000/linkedin.png" alt="LinkedIn Logo" style="vertical-align: middle;">
+                    &nbsp;Visita Mi LinkedIn
+                </a>
+            </div>
         </div>
         <div class="footer">
-            <p>© 2024 [Tu Nombre]. Todos los derechos reservados.</p>
-            <p><a href="[Enlace para darte de baja]" style="color: #3498db;">Darse de baja</a></p>
+            <p> ¯\_(ツ)_/¯ Alberto Mario Guerrero Gonzalez. <br/>
+                313 290 86 36. <br/>
+            </p>
         </div>
     </div>
 </body>

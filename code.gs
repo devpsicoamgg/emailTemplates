@@ -4,52 +4,60 @@ function enviarCorreos() {
   const datosRange = datosSheet.getDataRange();
   const datosValues = datosRange.getValues();
   
-  // Asume que la primera fila contiene los encabezados
   const headers = datosValues[0];
   const PARA_INDEX = headers.indexOf("PARA");
   const CC_INDEX = headers.indexOf("CC");
   const CCO_INDEX = headers.indexOf("CCO");
   const ASUNTO_INDEX = headers.indexOf("ASUNTO");
-  const NOMBRE_INDEX = headers.indexOf("NOMBRE");
+  const ENCABEZADO_INDEX = headers.indexOf("ENCABEZADO");
   const TEMPLATE_ID_INDEX = headers.indexOf("TEMPLATE_ID");
+  const TITULO_CAJA_UNO_INDEX = headers.indexOf("TITULO_CAJA_UNO");
+  const MENSAJE_CAJA_UNO_INDEX = headers.indexOf("MENSAJE_CAJA_UNO");
+  const TITULO_CAJA_DOS_INDEX = headers.indexOf("TITULO_CAJA_DOS");
+  const MENSAJE_CAJA_DOS_INDEX = headers.indexOf("MENSAJE_CAJA_DOS");
+  const TITULO_CAJA_TRES_INDEX = headers.indexOf("TITULO_CAJA_TRES");
+  const MENSAJE_CAJA_TRES_INDEX = headers.indexOf("MENSAJE_CAJA_TRES");
 
   for (let i = 1; i < datosValues.length; i++) {
     const para = datosValues[i][PARA_INDEX];
     const cc = datosValues[i][CC_INDEX];
     const cco = datosValues[i][CCO_INDEX];
     const asunto = datosValues[i][ASUNTO_INDEX];
-    const nombre = datosValues[i][NOMBRE_INDEX];
+    const encabezado = datosValues[i][ENCABEZADO_INDEX];
     const templateId = datosValues[i][TEMPLATE_ID_INDEX];
+    const tituloCaja1 = datosValues[i][TITULO_CAJA_UNO_INDEX];
+    const mensajeCaja1 = datosValues[i][MENSAJE_CAJA_UNO_INDEX];
+    const tituloCaja2 = datosValues[i][TITULO_CAJA_DOS_INDEX];
+    const mensajeCaja2 = datosValues[i][MENSAJE_CAJA_DOS_INDEX];
+    const tituloCaja3 = datosValues[i][TITULO_CAJA_TRES_INDEX];
+    const mensajeCaja3 = datosValues[i][MENSAJE_CAJA_TRES_INDEX];
     
-    console.log("Para:", para);
-    console.log("CC:", cc);
-    console.log("CCO:", cco);
-    console.log("Asunto:", asunto);
-    console.log("Nombre:", nombre);
-    console.log("Template ID:", templateId);
+
+   
 
     if (para && templateId) {
-      // Seleccionar la plantilla basada en TEMPLATE_ID
       let templateFile;
       if (templateId === 'TEMPLATE_HTML_ID_1') {
         templateFile = 'mailTemplateOne';
       } else if (templateId === 'TEMPLATE_HTML_ID_2') {
         templateFile = 'mailTemplateTwo';
       } else {
-        continue; // Si el TEMPLATE_ID no coincide con ninguna plantilla, salta esta fila
+        continue; 
       }
       
       const template = HtmlService.createTemplateFromFile(templateFile);
       const emailData = {
-        nombreCompleto: capitalize(nombre)
+        nombreCompleto: encabezado,
+        tituloCaja1: tituloCaja1,
+        mensajeCaja1: mensajeCaja1,
+        tituloCaja2: tituloCaja2,
+        mensajeCaja2: mensajeCaja2,
+        tituloCaja3: tituloCaja3,
+        mensajeCaja3: mensajeCaja3
       };
       template.data = emailData;
       const htmlBody = template.evaluate().getContent();
-
-console.log("Template:", templateFile);
-console.log("Email Data:", emailData);
-console.log("HTML Body:", htmlBody); 
-       
+      
       GmailApp.sendEmail(para, asunto, '', {
         cc: cc,
         bcc: cco,
