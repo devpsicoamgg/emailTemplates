@@ -47,58 +47,90 @@
             animation: slideIn 1s ease-out;
         }
 
-.header {
-  background-color: #f0f0f0;
-    background-image: url('https://res.cloudinary.com/dt1aacjqj/image/upload/v1718511202/superficie-metal-rayado-estilo-grunge-oscuro_wqouak.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 10px solid #000;
-    animation: bounce 2s infinite;
-}
+        .header {
+            background-color: #f0f0f0;
+            background-image: url('https://res.cloudinary.com/dt1aacjqj/image/upload/v1718511202/superficie-metal-rayado-estilo-grunge-oscuro_wqouak.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 10px solid #000;
+            animation: bounce 2s infinite;
+        }
 
-.header h1 {
-    margin: 0;
-    font-size: 32px;
-    color: #fff;
-    text-shadow: 2px 2px 0 #666, 
-                 4px 4px 0 #555, 
-                 6px 6px 0 #444, 
-                 8px 8px 0 #333;
-    text-align: right;
-}
+        .header h1 {
+            margin: 0;
+            font-size: 32px;
+            color: #fff;
+            text-shadow: 2px 2px 0 #666,
+                        4px 4px 0 #555,
+                        6px 6px 0 #444,
+                        8px 8px 0 #333;
+            text-align: right;
+        }
 
-.logo-container {
-    flex: 0 0 25%; 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 2px solid #fff; 
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); 
-    padding: 10px; 
-    border-radius: 10px; 
-}
+        .logo-container {
+            flex: 0 0 25%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #fff;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            padding: 10px;
+            border-radius: 10px;
+        }
 
-.logo {
-        width: 90%; 
-        height: 90%; 
-        filter: drop-shadow(22px 22px 22px rgba(255, 255, 255, 0.8)); 
-}
+        .logo {
+            width: 90%;
+            height: 90%;
+            filter: drop-shadow(22px 22px 22px rgba(255, 255, 255, 0.8));
+        }
 
-.h1-container {
-    flex: 0 0 75%; 
-    text-align: right;
-}
-
-
+        .h1-container {
+            flex: 0 0 75%;
+            text-align: right;
+        }
 
         .content {
             padding: 20px;
             color: #333;
+        }
+
+        .comic-box {
+            border: 3px solid #000;
+            padding: 10px;
+            margin-bottom: 20px;
+            background-color: #fffde7;
+            animation: slideIn 1.2s ease-out;
+            position: relative; /* Añadido para posicionamiento relativo */
+        }
+
+        .comic-box p {
+            margin: 0;
+        }
+
+        .comic-box:before {
+            content: "";
+            position: absolute;
+            top: -10px; /* Ajustar según el diseño */
+            left: -10px; /* Ajustar según el diseño */
+            width: calc(100% + 20px); /* Ajustar según el diseño */
+            height: 20px; /* Ajustar según el diseño */
+            background-color: #666;
+            transform: rotate(-3deg); /* Ajustar el ángulo de inclinación */
+            z-index: -1;
+        }
+
+        .comic-box strong {
+            font-family: 'Comic Sans MS', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji', sans-serif;
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: #fff;
+            position: relative;
+            z-index: 1;
         }
 
         .content h2 {
@@ -148,19 +180,6 @@
             border-top: 10px solid #000;
             animation: fadeIn 2s ease-out;
         }
-
-        .comic-box {
-            border: 3px solid #000;
-            padding: 10px;
-            margin-bottom: 20px;
-            background-color: #fffde7;
-            animation: slideIn 1.2s ease-out;
-        }
-
-        .comic-box p {
-            margin: 0;
-        }
-
     </style>
 </head>
 <body>
@@ -169,26 +188,23 @@
             <div class="logo-container">
                 <img src="https://github.com/devpsicoamgg/elementsdevamgg-/blob/main/images/logo2.png?raw=true" alt="Logo" class="logo">
             </div>
-            <div class="h1-container">  
-                <h1>¡Hola! <?= data.nombreCompleto ?></h1> 
+            <div class="h1-container">
+                <h1>¡Hola! <?= data.nombreCompleto ?></h1>
             </div>
         </div>
         <div class="content">
             <div class="comic-box">
-                <p><strong><?= data.tituloCaja1 ?></strong></p>
+                <strong><?= data.tituloCaja1 ?></strong>
                 <p><?= data.mensajeCaja1 ?></p>
             </div>
             <div class="comic-box">
-                <p><strong><?= data.tituloCaja2 ?></strong></p>
+                <strong><?= data.tituloCaja2 ?></strong>
                 <p><?= data.mensajeCaja2 ?></p>
             </div>
             <div class="comic-box">
-                <p><strong><?= data.tituloCaja3 ?></strong></p>
+                <strong><?= data.tituloCaja3 ?></strong>
                 <p><?= data.mensajeCaja3 ?></p>
             </div>
-
-
-
             <p>Estoy muy interesado en colaborar con ustedes y aportar mis conocimientos y habilidades en futuros proyectos. Adjunto mi currículum para su consideración.</p>
             <div class="cta-buttons">
                 <a href="https://github.com/devpsicoamgg" class="cta-button">
@@ -209,3 +225,4 @@
     </div>
 </body>
 </html>
+
