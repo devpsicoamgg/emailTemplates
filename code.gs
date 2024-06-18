@@ -71,7 +71,7 @@ function enviarCorreos() {
         attachments: [pdfBlob]
       });
       
-      console.log("Correo enviado a: " + para);
+     
     }
   }
 }
