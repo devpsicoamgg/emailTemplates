@@ -60,22 +60,19 @@ function enviarCorreos() {
       template.data = emailData;
       const htmlBody = template.evaluate().getContent();
       
-      // Obtener el blob del PDF desde Google Drive
+      console.log(htmlBody); // Verificar el contenido HTML
+
       const pdfBlob = getPDFBlob(linkPDF);
       
-      // Adjuntar el PDF al correo
       GmailApp.sendEmail(para, asunto, '', {
         cc: cc,
         bcc: cco,
         htmlBody: htmlBody,
         attachments: [pdfBlob]
       });
-      
-     
     }
   }
 }
-
 
 function getPDFBlob(linkPDF) {
   const fileId = getIdFromUrl(linkPDF);
@@ -83,7 +80,6 @@ function getPDFBlob(linkPDF) {
   const pdfBlob = file.getBlob();
   return pdfBlob;
 }
-
 
 function getIdFromUrl(url) {
   return url.match(/[-\w]{25,}/);
