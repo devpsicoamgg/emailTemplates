@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DevPsicoAmgg</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&display=swap">
+    <style>
     <style>
         @keyframes slideIn {
             from {
@@ -37,7 +39,7 @@
         }
 
         .container {
-            max-width: 700px;
+            max-width: 950px;
             margin: 0 auto;
             background-color: rgba(255, 255, 255, 0.9);
             border: 10px solid #000;
@@ -54,48 +56,24 @@
             background-repeat: no-repeat;
             background-position: center;
             padding: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
             border-bottom: 10px solid #000;
             animation: bounce 2s infinite;
+            text-align: center;
         }
 
         .header h1 {
             margin: 0;
-            font-size: 32px;
+            font-size: 24px;
             color: #fff;
-            text-shadow: 2px 2px 0 #666,
-                        4px 4px 0 #555,
-                        6px 6px 0 #444,
-                        8px 8px 0 #333;
-            text-align: right;
-        }
-
-        .logo-container {
-            flex: 0 0 25%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 2px solid #fff;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-            padding: 10px;
-            border-radius: 10px;
-        }
-
-        .logo {
-            width: 90%;
-            height: 90%;
-            filter: drop-shadow(22px 22px 22px rgba(255, 255, 255, 0.8));
-        }
-
-        .h1-container {
-            flex: 0 0 75%;
-            text-align: right;
+            text-shadow: 2px 2px 0 #666, 
+                         4px 4px 0 #555, 
+                         6px 6px 0 #444, 
+                         8px 8px 0 #333;
         }
 
         .content {
             padding: 20px;
+            padding-botton: 5px;
             color: #333;
         }
 
@@ -103,47 +81,14 @@
             border: 3px solid #000;
             padding: 10px;
             margin-bottom: 20px;
+            margin-top: -20px;
             background-color: #fffde7;
             animation: slideIn 1.2s ease-out;
-            position: relative; /* Añadido para posicionamiento relativo */
         }
 
         .comic-box p {
             margin: 0;
-        }
-
-        .comic-box:before {
-            content: "";
-            position: absolute;
-            top: -10px; /* Ajustar según el diseño */
-            left: -10px; /* Ajustar según el diseño */
-            width: calc(100% + 20px); /* Ajustar según el diseño */
-            height: 20px; /* Ajustar según el diseño */
-            background-color: #666;
-            transform: rotate(-3deg); /* Ajustar el ángulo de inclinación */
-            z-index: -1;
-        }
-
-        .comic-box strong {
-            font-family: 'Comic Sans MS', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji', sans-serif;
-            display: inline-block;
-            padding: 5px 10px;
-            background-color: #fff;
-            position: relative;
-            z-index: 1;
-        }
-
-        .content h2 {
-            color: #000;
-            font-size: 24px;
-            animation: fadeIn 1.5s ease-out;
-        }
-
-        .content p {
-            color: #333;
-            line-height: 1.6;
             font-size: 18px;
-            animation: fadeIn 1.5s ease-out;
         }
 
         .cta-buttons {
@@ -179,50 +124,79 @@
             color: #666;
             border-top: 10px solid #000;
             animation: fadeIn 2s ease-out;
+            position: relative;
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-logo {
+            width: 90px; 
+            filter: drop-shadow(3px 3px 10px rgba(0, 0, 0, 0.5));
+            padding-right: 40%;
+        }
+
+        .contact-info {
+            font-size: 16px;
+            color: #333;
+            text-align: right;
+            margin-right: 20px;
+        }
+
+        .contact-info span {
+            display: block;
+            font-size: 24px;
+            color: #555;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <div class="logo-container">
-                <img src="https://github.com/devpsicoamgg/elementsdevamgg-/blob/main/images/logo2.png?raw=true" alt="Logo" class="logo">
-            </div>
-            <div class="h1-container">
-                <h1>¡Hola! <?= data.nombreCompleto ?></h1>
-            </div>
+            <h1> Hola, <?= data.nombreCompleto ?></h1>
         </div>
         <div class="content">
             <div class="comic-box">
-                <strong><?= data.tituloCaja1 ?></strong>
-                <p><?= data.mensajeCaja1 ?></p>
+                <p style="font-size: 18px; font-family: Comic Sans MS"><strong><?= data.tituloCaja1 ?></strong></p>
+                <p style="text-align: center; color: #333; font-size: 16px;"><?= data.mensajeCaja1 ?></p>
             </div>
             <div class="comic-box">
-                <strong><?= data.tituloCaja2 ?></strong>
-                <p><?= data.mensajeCaja2 ?></p>
+                <p style="font-size: 18px; font-family: Comic Sans MS"><strong><?= data.tituloCaja2 ?></strong></p>
+                <p style="text-align: center; color: #333; font-size: 16px;"><?= data.mensajeCaja2 ?></p>
             </div>
             <div class="comic-box">
-                <strong><?= data.tituloCaja3 ?></strong>
-                <p><?= data.mensajeCaja3 ?></p>
-            </div>
-            <p>Estoy muy interesado en colaborar con ustedes y aportar mis conocimientos y habilidades en futuros proyectos. Adjunto mi currículum para su consideración.</p>
-            <div class="cta-buttons">
-                <a href="https://github.com/devpsicoamgg" class="cta-button">
-                    <img src="https://img.icons8.com/ios-filled/50/000000/github.png" alt="GitHub Logo" style="vertical-align: middle;">
-                    &nbsp;Visita Mi GitHub
-                </a>
-                <a href="https://www.linkedin.com/in/psico-dev-amgg/" class="cta-button">
-                    <img src="https://img.icons8.com/ios-filled/50/000000/linkedin.png" alt="LinkedIn Logo" style="vertical-align: middle;">
-                    &nbsp;Visita Mi LinkedIn
-                </a>
+                <p style="font-size: 18px; font-family: Comic Sans MS"><strong><?= data.tituloCaja3 ?></strong></p>
+                <p style="text-align: center; color: #333; font-size: 16px;" ><?= data.mensajeCaja3 ?></p>
             </div>
         </div>
+        <p style="padding: 5px; text-align: center; color: #333; font-size: 21px; margin: 5px;">
+    Interesado en en la oportunidad de unirme a <em style="font-weight: 500;"><?= data.empresaPara ?></em>, y aportar mis conocimientos y habilidades en búsqueda del crecimiento mutuo. <br />
+    Adjunto mi cv en formato <img src="https://img.icons8.com/ios-filled/50/000000/pdf.png" alt=".pdf" style="vertical-align: middle; width: 21px; height: 21px; margin-right: 5px;">.pdf
+</p>
+
+        <div class="cta-buttons">
+            <a href="https://github.com/devpsicoamgg" class="cta-button">
+                <img src="https://img.icons8.com/ios-filled/50/000000/github.png" alt="GitHub Logo" style="vertical-align: middle; color: #fff;">
+                 <span style="color: #fff;">&nbsp;GitHub</span> <br />
+             
+            </a>
+            <a href="https://www.linkedin.com/in/psico-dev-amgg/" class="cta-button">
+                <img src="https://img.icons8.com/ios-filled/50/000000/linkedin.png" alt="LinkedIn Logo" style="vertical-align: middle;  color: #fff;">
+                  <span style="color: #fff;">&nbsp;LinkedIn</span>
+            </a>
+        </div>
         <div class="footer">
-            <p> ¯\_(ツ)_/¯ Alberto Mario Guerrero Gonzalez. <br/>
-                313 290 86 36. <br/>
-            </p>
+            <img src="https://github.com/devpsicoamgg/elementsdevamgg-/blob/main/images/logo2.png?raw=true" alt="Logo" class="footer-logo">
+            <div class="contact-info">
+                <p>
+                    <span style="font-size: 20px;">¯\_(ツ)_/¯</span>
+                    Alberto Mario Guerrero Gonzalez. <br/>
+                    <span style="color: #ff9900; font-size: 20px;">313 290 86 36</span>
+                </p>
+            </div>
         </div>
     </div>
 </body>
 </html>
-

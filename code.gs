@@ -10,6 +10,7 @@ function enviarCorreos() {
   const CCO_INDEX = headers.indexOf("CCO");
   const ASUNTO_INDEX = headers.indexOf("ASUNTO");
   const ENCABEZADO_INDEX = headers.indexOf("ENCABEZADO");
+  const EMPRESA_PARA_INDEX = headers.indexOf("EMPRESA_PARA");
   const TEMPLATE_ID_INDEX = headers.indexOf("TEMPLATE_ID");
   const TITULO_CAJA_UNO_INDEX = headers.indexOf("TITULO_CAJA_UNO");
   const MENSAJE_CAJA_UNO_INDEX = headers.indexOf("MENSAJE_CAJA_UNO");
@@ -17,6 +18,7 @@ function enviarCorreos() {
   const MENSAJE_CAJA_DOS_INDEX = headers.indexOf("MENSAJE_CAJA_DOS");
   const TITULO_CAJA_TRES_INDEX = headers.indexOf("TITULO_CAJA_TRES");
   const MENSAJE_CAJA_TRES_INDEX = headers.indexOf("MENSAJE_CAJA_TRES");
+  const LINK_PDF_INDEX = headers.indexOf("LINK_PDF"); 
 
   for (let i = 1; i < datosValues.length; i++) {
     const para = datosValues[i][PARA_INDEX];
@@ -24,6 +26,7 @@ function enviarCorreos() {
     const cco = datosValues[i][CCO_INDEX];
     const asunto = datosValues[i][ASUNTO_INDEX];
     const encabezado = datosValues[i][ENCABEZADO_INDEX];
+    const empresaPara = datosValues[i][EMPRESA_PARA_INDEX];
     const templateId = datosValues[i][TEMPLATE_ID_INDEX];
     const tituloCaja1 = datosValues[i][TITULO_CAJA_UNO_INDEX];
     const mensajeCaja1 = datosValues[i][MENSAJE_CAJA_UNO_INDEX];
@@ -31,9 +34,7 @@ function enviarCorreos() {
     const mensajeCaja2 = datosValues[i][MENSAJE_CAJA_DOS_INDEX];
     const tituloCaja3 = datosValues[i][TITULO_CAJA_TRES_INDEX];
     const mensajeCaja3 = datosValues[i][MENSAJE_CAJA_TRES_INDEX];
-    
-
-   
+    const linkPDF = datosValues[i][LINK_PDF_INDEX];
 
     if (para && templateId) {
       let templateFile;
@@ -48,6 +49,7 @@ function enviarCorreos() {
       const template = HtmlService.createTemplateFromFile(templateFile);
       const emailData = {
         nombreCompleto: encabezado,
+        empresaPara: empresaPara,
         tituloCaja1: tituloCaja1,
         mensajeCaja1: mensajeCaja1,
         tituloCaja2: tituloCaja2,
@@ -58,10 +60,15 @@ function enviarCorreos() {
       template.data = emailData;
       const htmlBody = template.evaluate().getContent();
       
+      // Obtener el blob del PDF desde Google Drive
+      const pdfBlob = getPDFBlob(linkPDF);
+      
+      // Adjuntar el PDF al correo
       GmailApp.sendEmail(para, asunto, '', {
         cc: cc,
         bcc: cco,
-        htmlBody: htmlBody
+        htmlBody: htmlBody,
+        attachments: [pdfBlob]
       });
       
       console.log("Correo enviado a: " + para);
@@ -69,6 +76,15 @@ function enviarCorreos() {
   }
 }
 
-function capitalize(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+
+function getPDFBlob(linkPDF) {
+  const fileId = getIdFromUrl(linkPDF);
+  const file = DriveApp.getFileById(fileId);
+  const pdfBlob = file.getBlob();
+  return pdfBlob;
+}
+
+
+function getIdFromUrl(url) {
+  return url.match(/[-\w]{25,}/);
 }
