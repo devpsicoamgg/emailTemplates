@@ -60,7 +60,7 @@ function enviarCorreos() {
       template.data = emailData;
       const htmlBody = template.evaluate().getContent();
       
-      console.log(htmlBody); // Verificar el contenido HTML
+      console.log("Correo enviado exitosamente a: " + para, "Con el asunto: ", asunto); 
 
       const pdfBlob = getPDFBlob(linkPDF);
       
