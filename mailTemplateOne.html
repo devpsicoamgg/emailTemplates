@@ -16,12 +16,15 @@
             }
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
             }
-            to {
-                opacity: 1;
+            40% {
+                transform: translateY(-30px);
+            }
+            60% {
+                transform: translateY(-15px);
             }
         }
 
@@ -55,8 +58,8 @@
             background-position: center;
             padding: 20px;
             border-bottom: 10px solid #000;
-            animation: bounce 2s infinite;
             text-align: center;
+            animation: bounce 2s infinite;
         }
 
         .header h1 {
@@ -71,7 +74,6 @@
 
         .content {
             padding: 20px;
-            padding-botton: 5px;
             color: #333;
         }
 
@@ -79,9 +81,21 @@
             border: 3px solid #000;
             padding: 10px;
             margin-bottom: 20px;
-            margin-top: -20px;
             background-color: #fffde7;
+            position: relative;
             animation: slideIn 1.2s ease-out;
+        }
+
+        .comic-box::before {
+            content: '';
+            width: 0; 
+            height: 0; 
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-top: 15px solid #fffde7;
+            position: absolute;
+            left: 20px;
+            top: -15px;
         }
 
         .comic-box p {
@@ -121,7 +135,7 @@
             font-size: 14px;
             color: #666;
             border-top: 10px solid #000;
-            animation: fadeIn 2s ease-out;
+            animation: slideIn 2s ease-out;
             position: relative;
             margin-top: 20px;
             display: flex;
@@ -157,48 +171,46 @@
         </div>
         <div class="content">
             <div class="comic-box">
-                <p style="font-size: 18px; font-family: Comic Sans MS"><strong><?= data.tituloCaja1 ?></strong></p>
+                <p style="font-size: 18px;"><strong><?= data.tituloCaja1 ?></strong></p>
                 <p style="text-align: center; color: #333; font-size: 16px;"><?= data.mensajeCaja1 ?></p>
             </div>
             <div class="comic-box">
-                <p style="font-size: 18px; font-family: Comic Sans MS"><strong><?= data.tituloCaja2 ?> </strong></p>
+                <p style="font-size: 18px;"><strong><?= data.tituloCaja2 ?> </strong></p>
                 <p style="text-align: center; color: #333; font-size: 16px;"><?= data.mensajeCaja2 ?> </p>
             </div>
             <div class="comic-box">
-                <p style="font-size: 18px; font-family: Comic Sans MS"><strong><?= data.tituloCaja3 ?> </strong></p>
+                <p style="font-size: 18px;"><strong><?= data.tituloCaja3 ?> </strong></p>
                 <p style="text-align: center; color: #333; font-size: 16px;" ><?= data.mensajeCaja3 ?> </p>
             </div>
         </div>
         <p style="padding: 5px; text-align: center; color: #333; font-size: 21px; margin: 5px;">
-    Interesado en la oportunidad de unirme a <em style="font-weight: 500;">"<?= data.empresaPara ?>"</em>, y aportar mis conocimientos y habilidades en búsqueda del crecimiento mutuo. <br />
-    Adjunto mi cv en formato <img src="https://img.icons8.com/ios-filled/50/000000/pdf.png" alt=".pdf" style="vertical-align: middle; width: 21px; height: 21px; margin-right: 5px;">.pdf
-</p>
+            Interesado en la oportunidad de unirme a <em style="font-weight: 500;">"<?= data.empresaPara ?>"</em>, y aportar mis conocimientos y habilidades en búsqueda del crecimiento mutuo. <br />
+            Adjunto mi cv en formato <img src="https://img.icons8.com/ios-filled/50/000000/pdf.png" alt=".pdf" style="vertical-align: middle; width: 21px; height: 21px; margin-right: 5px;">.pdf
+        </p>
 
         <div class="cta-buttons">
             <a href="https://github.com/devpsicoamgg" class="cta-button">
-                <img src="https://img.icons8.com/ios-filled/50/000000/github.png" alt="GitHub Logo" style="vertical-align: middle; color: #fff;">
-                 <span style="color: #fff;">&nbsp;GitHub</span> <br />
-             
+                <img src="https://img.icons8.com/ios-filled/50/000000/github.png" alt="GitHub Logo" style="vertical-align: middle;">
+                 <span style="color: #fff;">&nbsp;GitHub</span>
             </a>
             <a href="https://www.linkedin.com/in/psico-dev-amgg/" class="cta-button">
-                <img src="https://img.icons8.com/ios-filled/50/000000/linkedin.png" alt="LinkedIn Logo" style="vertical-align: middle;  color: #fff;">
+                <img src="https://img.icons8.com/ios-filled/50/000000/linkedin.png" alt="LinkedIn Logo" style="vertical-align: middle;">
                   <span style="color: #fff;">&nbsp;LinkedIn</span>
             </a>
         </div>
         <div class="footer">
-    <img src="https://github.com/devpsicoamgg/elementsdevamgg-/blob/main/images/logo2.png?raw=true" alt="Logo" class="footer-logo">
-    <div class="contact-info">
-        <p>
-            <span style="font-size: 20px;">¯\_(ツ)_/¯</span>
-            Alberto Mario Guerrero Gonzalez. <br/>
-            <span style="color: #ff9900; font-size: 20px;">313 290 86 36</span>
-        </p>
-        <p style="font-size: 14px; color: gray;">
-            Diseñado con Google App Script
-        </p>
-    </div>
-</div>
-
+            <img src="https://github.com/devpsicoamgg/elementsdevamgg-/blob/main/images/logo2.png?raw=true" alt="Logo" class="footer-logo">
+            <div class="contact-info">
+                <p>
+                    <span style="font-size: 20px;">¯\_(ツ)_/¯</span>
+                    Alberto Mario Guerrero Gonzalez. <br/>
+                    <span style="color: #ff9900; font-size: 20px;">313 290 86 36</span>
+                </p>
+                <p style="font-size: 14px; color: gray;">
+                    Diseñado con Google App Script
+                </p>
+            </div>
+        </div>
     </div>
 </body>
 </html>
